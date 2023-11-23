@@ -1,0 +1,44 @@
+body {
+  font-family: Arial, sans-serif;
+  text-align: center;
+  margin: 50px;
+}
+
+.container {
+  width: 50%;
+  margin: 0 auto;
+}
+
+button {
+  padding: 10px 20px;
+  cursor: pointer;
+}
+
+input[type="number"],
+select {
+  padding: 8px;
+  width: 150px;
+}
+
+.rainbow-text {
+  display: inline-block;
+  animation: rainbow 3s infinite;
+}
+
+@keyframes rainbow {
+  0% {
+    color: #ff0000;
+  }
+  25% {
+    color: #ff7f00;
+  }
+  50% {
+    color: #ffff00;
+  }
+  75% {
+    color: #00ff00;
+  }
+  100% {
+    color: #0000ff;
+  }
+}

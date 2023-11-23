@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Tài Xỉu Game</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <h2 class="text-center rainbow-text">
+      Tài xỉu người không chơi là người thắng
+    </h2>
+    <br />
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+      <div class="container-fluid">
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+          <div class="navbar-nav">
+            <a class="nav-link active" aria-current="page" href="#">
+              Số Tiền của bạn là (VND):
+              <input
+                type="number"
+                class="form-control"
+                id="balance"
+                value="100000"
+                readonly
+              />
+            </a>
+            <a class="nav-link" href="naptienchobophong.html" onclick="topUp()"
+              >| Nạp tiền cho bố Phong</a
+            >
+          </div>
+        </div>
+      </div>
+    </nav>
+    <div
+      class="container"
+      style="
+        width: 800px;
+        height: 500px;
+        background-image: url('haha.png');
+        background-repeat: no-repeat;
+        background-position: center center;
+      "
+    >
+      <div class="row">
+        <div class="col-4" style="height: 500px">
+          <div style="position: relative; top: 265px; left: 140px">
+            <label for="tai" style="color: white">Nhập số tiền:</label><br />
+            <input
+              type="text"
+              id="taiAmount"
+              name="tai"
+              style="width: 70px; border-radius: 5px"
+              oninput="selectBet('tai')"
+            />
+          </div>
+        </div>
+        <div class="col-4" style="height: 500px">
+          <div style="position: relative; top: 210px">
+            <button class="btn btn-danger" onclick="rollDice()">Quay số</button
+            ><br />
+            <label style="color: white">Kết quả</label><br />
+            <input
+              type="text"
+              id="result"
+              name="ketqua"
+              style="width: 70px; border-radius: 5px"
+              readonly
+            />
+          </div>
+        </div>
+        <div class="col-4" style="height: 500px">
+          <div style="position: relative; top: 265px; right: 140px">
+            <label for="xiu" style="color: white">Nhập số tiền:</label><br />
+            <input
+              type="text"
+              id="xiuAmount"
+              name="xiu"
+              style="width: 70px; border-radius: 5px"
+              oninput="selectBet('xiu')"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+    <footer style="background-color: gray; height: 100px; color: white">
+      <div style="position: relative; top: 30px">
+        Web design by Phong dep trai
+      </div>
+    </footer>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+      integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
+      integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
+      crossorigin="anonymous"
+    ></script>
+    <script>
+      let balance = 100000;
+      let selectedBet = ""; // Biến để lưu trữ ô cược được chọn
+
+      function topUp() {
+        // Implement logic to add money to balance
+        // For example:
+        balance += 50000; // Add 50000 to balance
+        document.getElementById("balance").value = balance;
+      }
+      function selectBet(betType) {
+        selectedBet = betType; // Lưu loại cược được chọn
+
+        // Xác định ô input cần enable/disable và reset giá trị
+        const taiInput = document.getElementById("taiAmount");
+        const xiuInput = document.getElementById("xiuAmount");
+
+        if (betType === "tai") {
+          taiInput.value = taiInput.value.trim() !== "" ? taiInput.value : null;
+          xiuInput.value = null;
+        } else if (betType === "xiu") {
+          xiuInput.value = xiuInput.value.trim() !== "" ? xiuInput.value : null;
+          taiInput.value = null;
+        }
+      }
+      function rollDice() {
+        const taiAmount =
+          parseInt(document.getElementById("taiAmount").value) || 0;
+        const xiuAmount =
+          parseInt(document.getElementById("xiuAmount").value) || 0;
+
+        if (taiAmount < 0 || xiuAmount < 0) {
+          alert("Số tiền cược không thể là số âm!");
+          return;
+        }
+
+        let selectedAmount = 0;
+
+        if (selectedBet === "tai") {
+          selectedAmount = taiAmount;
+        } else if (selectedBet === "xiu") {
+          selectedAmount = xiuAmount;
+        } else {
+          alert("Vui lòng chọn một loại cược.");
+          return;
+        }
+
+        if (selectedAmount > balance) {
+          alert("Bạn không đủ tiền cược!");
+          return;
+        }
+
+        const diceResult = Math.floor(Math.random() * 6) + 1;
+        const isTai = diceResult % 2 !== 0;
+
+        let winAmount = 0;
+        let loseAmount = 0;
+
+        if (
+          (selectedBet === "tai" && isTai) ||
+          (selectedBet === "xiu" && !isTai)
+        ) {
+          winAmount = selectedAmount * 2;
+          alert(`Chúc mừng bạn đã thắng ${winAmount} VND!`);
+        } else {
+          loseAmount = selectedAmount;
+          alert(`Bạn đã thua và bị trừ ${loseAmount} VND.`);
+        }
+
+        balance += winAmount - loseAmount;
+        document.getElementById("balance").value = balance;
+
+        const resultInput = document.getElementById("result");
+        resultInput.value = isTai ? "Tài" : "Xỉu";
+      }
+    </script>
+  </body>
+</html>
