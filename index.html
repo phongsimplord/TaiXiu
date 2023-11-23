@@ -9,9 +9,13 @@
       integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
       crossorigin="anonymous"
     />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css"
+    />
     <link rel="stylesheet" href="styles.css" />
   </head>
-  <body>
+  <body style="background-image: url('background.png')">
     <h2 class="text-center rainbow-text">
       Tài xỉu người không chơi là người thắng
     </h2>
@@ -68,10 +72,10 @@
     </div>
     <div class="row">
       <div class="col-6">
-        <label> Số Tiền của bạn là (VND):</label>
+        <label style="color: white"> Số Tiền của bạn là (VND):</label>
         <input
           type="number"
-          style="border: none"
+          style="border: none; width: 100px; height: 20px"
           id="balance"
           value="100000"
           readonly
@@ -91,12 +95,101 @@
       </div>
     </div>
     <br />
-    <footer style="background-color: gray; height: 100px; color: white">
+    <div class="col-12" style="margin-bottom: 20px">
+      <h4 class="rainbow-text">Top Nạp Tiền:</h4>
+    </div>
+    <marquee behavior="" direction="">
+      <div class="row">
+        <div class="col-3">
+          <div class="card" style="width: 18rem">
+            <img
+              src="img/403641463_290167273391259_7642923638792699643_n.jpg"
+              class="card-img-top"
+              alt="..."
+            />
+            <div class="card-body">
+              <p class="card-text">
+                Phếch cơ <br />
+                (Đang cọc cúp CKTG)
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="col-3">
+          <div class="card" style="width: 18rem">
+            <img
+              src="img/342174565_244400294823103_4453891586321175810_n.jpg"
+              class="card-img-top"
+              alt="..."
+            />
+            <div class="card-body">
+              <p class="card-text">
+                Trần Mão <br />
+                (Đang cọc Phao sần pha lây)
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="col-3">
+          <div class="card" style="width: 18rem">
+            <img
+              src="img/370198841_3741488242804579_2298516124675147903_n.jpg"
+              class="card-img-top"
+              alt="..."
+            />
+            <div class="card-body">
+              <p class="card-text">
+                Đỗ Nam Trung - Kim Chông Ủn <br />
+                (Tao mà thua tao bấm nút thả bom)
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="col-3">
+          <div class="card" style="width: 18rem">
+            <img
+              src="img/385536992_877638350404685_8968534880968774220_n.jpg"
+              class="card-img-top"
+              alt="..."
+            />
+            <div class="card-body">
+              <p class="card-text">
+                Xiao Xiao <br />
+                (Cọc cả tính mạng)
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </marquee>
+    <br />
+    <footer
+      style="background-color: rgb(142, 142, 142); height: 600px; color: white"
+    >
       <div style="position: relative; top: 30px">
         Web design by Phong dep trai
         <br />
         Web của tao chơi sạch random tỷ lệ 50-50 thằng nào ý kiến thì cho bố cái
         địa chỉ
+        <br />
+        <a href="https://www.facebook.com/phong.simp.lord/">
+          <i style="font-size: 3rem; color: white" class="bi bi-facebook"></i>
+        </a>
+        <a
+          href="https://www.instagram.com/phong_simp/?fbclid=IwAR0w2O_XYfR9Jr5ywba6FzvN1qY3ZirMXlXnAu4BrkTG5igReu2lydRko_o"
+        >
+          <i style="font-size: 3rem; color: white" class="bi bi-instagram"></i>
+        </a>
+        <br />
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3728.5070519155474!2d105.84708098589086!3d20.851603183910363!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3135b3b92fea8ae9%3A0xc6ff4af7c282fdb!2zTOG7mWMgRMawLCBOZ3V54buFbiBUcsOjaSwgVGjGsOG7nW5nIFTDrW4sIEhhbm9pLCBWaWV0bmFt!5e0!3m2!1sen!2s!4v1700772822622!5m2!1sen!2s"
+          width="800"
+          height="400"
+          style="border: 0"
+          allowfullscreen=""
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+        ></iframe>
       </div>
     </footer>
     <script
@@ -185,8 +278,8 @@
         document.getElementById("balance").value = balance;
 
         const resultInput = document.getElementById("result");
-        const isTai = diceResult % 2 !== 0;
-        resultInput.value = isTai ? "Tài" : "Xỉu";
+        resultInput.value =
+          selectedBet === "tai" && diceResult <= winProbability ? "Tài" : "Xỉu";
       }
     </script>
   </body>
