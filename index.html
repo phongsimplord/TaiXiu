@@ -116,22 +116,19 @@
     ></script>
     <script>
       let balance = 100000;
-      let selectedBet = ""; // Biến để lưu trữ ô cược được chọn
+      let selectedBet = "";
 
       function cocainit() {
         alert("Có cái nịt anh cho rút :))");
       }
 
       function topUp() {
-        // Implement logic to add money to balance
-        // For example:
-        balance += 50000; // Add 50000 to balance
+        balance += 50000;
         document.getElementById("balance").value = balance;
       }
-      function selectBet(betType) {
-        selectedBet = betType; // Lưu loại cược được chọn
 
-        // Xác định ô input cần enable/disable và reset giá trị
+      function selectBet(betType) {
+        selectedBet = betType;
         const taiInput = document.getElementById("taiAmount");
         const xiuInput = document.getElementById("xiuAmount");
 
@@ -170,16 +167,13 @@
           return;
         }
 
-        const diceResult = Math.floor(Math.random() * 6) + 1;
-        const isTai = diceResult % 2 !== 0;
+        const winProbability = 0.2; // Tỷ lệ thắng là 30%
+        const diceResult = Math.random();
 
         let winAmount = 0;
         let loseAmount = 0;
 
-        if (
-          (selectedBet === "tai" && isTai) ||
-          (selectedBet === "xiu" && !isTai)
-        ) {
+        if (diceResult <= winProbability) {
           winAmount = selectedAmount * 2;
           alert(`Chúc mừng bạn đã thắng ${winAmount} VND!`);
         } else {
@@ -191,6 +185,7 @@
         document.getElementById("balance").value = balance;
 
         const resultInput = document.getElementById("result");
+        const isTai = diceResult % 2 !== 0;
         resultInput.value = isTai ? "Tài" : "Xỉu";
       }
     </script>
