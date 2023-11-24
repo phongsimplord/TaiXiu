@@ -17,7 +17,7 @@
   </head>
   <body style="background-image: url('background.png')">
     <h2 class="text-center rainbow-text">
-      Tài xỉu người không chơi là người thắng
+      Tài xỉu người không chơi là người nhát
     </h2>
     <div
       class="container-fluid"
@@ -37,7 +37,7 @@
               type="text"
               id="taiAmount"
               name="tai"
-              style="width: 70px; border-radius: 5px"
+              style="width: 70px; border-radius: 10px"
               oninput="selectBet('tai')"
             />
           </div>
@@ -51,7 +51,7 @@
               type="text"
               id="result"
               name="ketqua"
-              style="width: 70px; border-radius: 5px"
+              style="width: 70px; border-radius: 7px"
               readonly
             />
           </div>
@@ -63,7 +63,7 @@
               type="text"
               id="xiuAmount"
               name="xiu"
-              style="width: 70px; border-radius: 5px"
+              style="width: 70px; border-radius: 10px"
               oninput="selectBet('xiu')"
             />
           </div>
@@ -80,11 +80,8 @@
           value="100000"
           readonly
         />
-        <a class="nav-link rainbow-text" href="#" onclick="cocainit()">
-          Rút tiền</a
-        >
-      </div>
-      <div class="col-3">
+        <a class="btn rainbow-text" href="#" onclick="cocainit()"> Rút tiền</a>
+        |
         <a
           class="nav-link rainbow-text"
           href="naptienchobophong.html"
@@ -190,6 +187,9 @@
           loading="lazy"
           referrerpolicy="no-referrer-when-downgrade"
         ></iframe>
+        <audio id="backgroundMusic" autoplay loop>
+          <source src="bgm.mp3" type="audio/mpeg" />
+        </audio>
       </div>
     </footer>
     <script
@@ -208,6 +208,9 @@
       crossorigin="anonymous"
     ></script>
     <script>
+      window.onload = function () {
+        document.getElementById("backgroundMusic").play();
+      };
       let balance = 100000;
       let selectedBet = "";
 
